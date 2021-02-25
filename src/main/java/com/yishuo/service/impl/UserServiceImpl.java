@@ -1,10 +1,13 @@
 package com.yishuo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yishuo.dao.UserDao;
 import com.yishuo.entity.User;
 import com.yishuo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.Map;
  * @Version V1.0
  * @Description:
  */
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -58,6 +62,23 @@ public class UserServiceImpl implements UserService {
         queryWrapper.eq("phone","123");
 
         userDao.update(user, queryWrapper);
+    }
+
+    /**
+     *  分页查询需要   配置分页的插件
+     * @param map
+     * @return
+     */
+    @Override
+    public IPage<User> ListPage(Map map) {
+        IPage<User> page = new Page<>(1,2);
+
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.gt("id","1");
+
+        IPage pageList = userDao.selectPage(page, queryWrapper);
+
+        return pageList;
     }
 
 
