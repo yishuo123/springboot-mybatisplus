@@ -3,7 +3,7 @@ package com.yishuo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yishuo.dao.UserDao;
+import com.yishuo.mapper.UserMapper;
 import com.yishuo.entity.User;
 import com.yishuo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserDao  userDao;
+    UserMapper userMapper;
 
 
     /**
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
         // lt 代表小于 le 小于等于  gt 大于  ge 大于等于
         queryWrapper.lt("id","99");
 
-        List<User> users = userDao.selectList(queryWrapper);
+        List<User> users = userMapper.selectList(queryWrapper);
 
         return users;
     }
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("phone","123");
 
-        userDao.update(user, queryWrapper);
+        userMapper.update(user, queryWrapper);
     }
 
     /**
@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.gt("id","1");
 
-        IPage pageList = userDao.selectPage(page, queryWrapper);
+        IPage pageList = userMapper.selectPage(page, queryWrapper);
 
         return pageList;
     }

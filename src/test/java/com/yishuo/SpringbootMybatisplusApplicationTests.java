@@ -1,7 +1,7 @@
 package com.yishuo;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.yishuo.dao.UserDao;
+import com.yishuo.mapper.UserMapper;
 import com.yishuo.entity.User;
 import com.yishuo.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -14,14 +14,14 @@ import java.util.List;
 class SpringbootMybatisplusApplicationTests {
 
     @Autowired
-    UserDao userDao;
+    UserMapper userMapper;
 
     @Autowired
     UserServiceImpl userService;
 
     @Test
     void contextLoads() {
-        List<User> users = userDao.selectList(null);
+        List<User> users = userMapper.selectList(null);
         users.forEach(user -> System.out.println(user.getUserName()));
     }
 
