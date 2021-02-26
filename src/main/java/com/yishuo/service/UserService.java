@@ -31,6 +31,13 @@ public interface UserService {
     IPage<User> ListPage (Map map);
 
 
+    /**
+     *  根据id删除
+     * @param id
+     */
+    void deletedById(String id);
+
+
 
 
 

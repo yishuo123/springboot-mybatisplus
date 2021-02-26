@@ -1,9 +1,6 @@
 package com.yishuo.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,5 +36,10 @@ public class User {
     // 增加业务的属性   不映射数据中的任何字段
      @TableField(exist = false)
     private String  adb;
+
+
+     // 该字段是定义  逻辑删除时的字段
+     @TableLogic
+    private Integer deleted;
 
 }

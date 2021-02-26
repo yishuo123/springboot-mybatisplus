@@ -3,9 +3,10 @@ package com.yishuo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yishuo.mapper.UserMapper;
 import com.yishuo.entity.User;
+import com.yishuo.mapper.UserMapper;
 import com.yishuo.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,11 @@ import java.util.Map;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+
+    protected Logger log = Logger.getLogger(UserServiceImpl.class);
+
+
 
     @Autowired
     UserMapper userMapper;
@@ -79,6 +85,18 @@ public class UserServiceImpl implements UserService {
         IPage pageList = userMapper.selectPage(page, queryWrapper);
 
         return pageList;
+    }
+
+
+    /**
+     * 根据id删除
+     * @param id
+     */
+    @Override
+    public void deletedById(String id) {
+        int i = userMapper.deleteById(id);
+//        log.info("删除的id={}"+i);
+        System.out.println("删除的id={}"+i);
     }
 
 
